@@ -66,5 +66,5 @@ variable "resource_name_prefix" {
 variable "storage_account" {
   description = "Singular storage account for all four function apps"
   type = string
-  default = "smartwyrefunctions"
+  default = "smartwyreinterview"
 }
