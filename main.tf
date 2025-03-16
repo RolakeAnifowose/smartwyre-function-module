@@ -10,8 +10,8 @@ resource "azurerm_windows_function_app" "new" {
   location                    = var.resource_group.location
   resource_group_name         = var.resource_group.name
   service_plan_id             = azurerm_service_plan.func_service_plan[each.key].id
-  storage_account_name        = azurerm_storage_account.func_storage[each.key].name
-  storage_account_access_key  = azurerm_storage_account.func_storage[each.key].primary_access_key
+  storage_account_name        = azurerm_storage_account.func_storage.name
+  storage_account_access_key  = azurerm_storage_account.func_storage.primary_access_key
   https_only                  = true
   client_certificate_mode     = "Required"
   functions_extension_version = local.functions_extension_version
@@ -57,9 +57,9 @@ resource "azurerm_service_plan" "func_service_plan" {
 }
 
 resource "azurerm_storage_account" "func_storage" {
-  for_each = var.functions
-
-  name                             = lower(substr(replace(format("myfunc%s", each.key), "-", ""), 0, 24))
+  # for_each = var.functions
+  # name                             = lower(substr(replace(format("myfunc%s", each.key), "-", ""), 0, 24))
+  name = var.storage_account
   location                         = var.resource_group.location
   resource_group_name              = var.resource_group.name
   account_tier                     = "Standard"
@@ -67,7 +67,7 @@ resource "azurerm_storage_account" "func_storage" {
   allow_nested_items_to_be_public  = false
   min_tls_version                  = "TLS1_2"
   cross_tenant_replication_enabled = true
-  access_tier = "Cool"
+  access_tier = "Hot"
 
   blob_properties {
     last_access_time_enabled = true
