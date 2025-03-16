@@ -1,5 +1,5 @@
 resource "azurerm_storage_account" "func_storage" {
-  for_each = var.functions
+  for_each                         = var.functions
   name                             = lower(substr(replace(format("myfunc%s", each.key), "-", ""), 0, 24))
   location                         = var.resource_group.location
   resource_group_name              = var.resource_group.name
@@ -8,7 +8,7 @@ resource "azurerm_storage_account" "func_storage" {
   allow_nested_items_to_be_public  = false
   min_tls_version                  = "TLS1_2"
   cross_tenant_replication_enabled = true
-  access_tier = "Hot"
+  access_tier                      = "Hot"
 
   blob_properties {
     last_access_time_enabled = true
@@ -23,12 +23,12 @@ resource "azurerm_storage_account" "func_storage" {
 
   identity {
     type         = "UserAssigned"
-    identity_ids = [azurerm_user_assigned_identity.identity.id]
+    identity_ids = var.identity_id
   }
 
   customer_managed_key {
-    key_vault_key_id = azurerm_key_vault_key.key.id
-    user_assigned_identity_id = azurerm_user_assigned_identity.identity.id
+    key_vault_key_id          = var.key_id
+    user_assigned_identity_id = var.identity_id
   }
 
   tags = var.tags

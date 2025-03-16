@@ -1,5 +1,5 @@
 resource "azurerm_key_vault_access_policy" "function" {
-  for_each = var.functions
+  for_each     = var.functions
   key_vault_id = var.key_vault_id
   tenant_id    = var.tenant_id
 

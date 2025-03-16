@@ -69,7 +69,12 @@ variable "storage_account" {
   default     = "smartwyreinterview"
 }
 
-variable "identity" {
+variable "identity_id" {
   description = "User identity"
   type        = string
 }
+
+variable "key_id" {
+  description = "Key vault key"
+  type        = string
+} 
