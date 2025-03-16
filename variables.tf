@@ -3,7 +3,7 @@ variable "resource_group" {
 }
 
 variable "tags" {
-  type = map(string)
+  type        = map(string)
   description = "Common tags"
 }
 
@@ -31,26 +31,26 @@ variable "diagnostic_settings_enabled" {
   description = "[Optional] Whether to enable diagnostic settings for the functions and their storage accounts."
 }
 
-variable tenant_id {
+variable "tenant_id" {
   type = string
 }
 
-variable key_vault_id {
+variable "key_vault_id" {
   type = string
 }
 
 variable "function_configurations" {
   description = "Map of function configurations with function name as key"
   type = map(object({
-    dotnet_version    = string
-    app_scale_limit   = number
-    use_32_bit_worker = bool
+    dotnet_version              = string
+    app_scale_limit             = number
+    use_32_bit_worker           = bool
     use_dotnet_isolated_runtime = bool
   }))
   default = {}
 }
 
-variable "business_division" {
+variable "team" {
   type = string
 }
 
@@ -65,6 +65,11 @@ variable "resource_name_prefix" {
 
 variable "storage_account" {
   description = "Singular storage account for all four function apps"
-  type = string
-  default = "smartwyreinterview"
+  type        = string
+  default     = "smartwyreinterview"
+}
+
+variable "identity" {
+  description = "User identity name"
+  type        = string
 }
