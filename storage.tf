@@ -23,7 +23,7 @@ resource "azurerm_storage_account" "func_storage" {
 
   identity {
     type         = "UserAssigned"
-    identity_ids = var.identity_id
+    identity_ids = [var.identity_id]
   }
 
   customer_managed_key {
