@@ -70,6 +70,6 @@ variable "storage_account" {
 }
 
 variable "identity" {
-  description = "User identity name"
+  description = "User identity"
   type        = string
 }
