@@ -46,6 +46,7 @@ variable "function_configurations" {
     app_scale_limit             = number
     use_32_bit_worker           = bool
     use_dotnet_isolated_runtime = bool
+    minimum_tls_version         = string
   }))
   default = {}
 }
@@ -68,13 +69,3 @@ variable "storage_account" {
   type        = string
   default     = "smartwyreinterview"
 }
-
-variable "identity_id" {
-  description = "User identity"
-  type        = string
-}
-
-variable "key_id" {
-  description = "Key vault key"
-  type        = string
-} 

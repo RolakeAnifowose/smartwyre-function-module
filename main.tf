@@ -13,7 +13,7 @@ resource "azurerm_windows_function_app" "new" {
   functions_extension_version = local.functions_extension_version
 
   site_config {
-    minimum_tls_version      = "1.2"
+    minimum_tls_version      = lookup(var.function_configurations[each.key], "minimum_tls_version", "1.3")
     ftps_state               = "Disabled"
     application_insights_key = azurerm_application_insights.func_app_insights.instrumentation_key
     app_scale_limit          = lookup(var.function_configurations[each.key], "app_scale_limit", 2)
