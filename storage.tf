@@ -10,6 +10,7 @@ resource "azurerm_storage_account" "func_storage" {
   cross_tenant_replication_enabled  = true
   access_tier                       = "Hot"
   infrastructure_encryption_enabled = true
+  public_network_access_enabled     = false
 
   blob_properties {
     last_access_time_enabled = true
