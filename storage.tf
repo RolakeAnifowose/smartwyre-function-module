@@ -22,7 +22,7 @@ resource "azurerm_storage_account" "func_storage" {
   }
 
   identity {
-    type         = "UserAssigned, SystemAssigned"
+    type         = "SystemAssigned, UserAssigned"
     identity_ids = [var.identity_id]
   }
 
