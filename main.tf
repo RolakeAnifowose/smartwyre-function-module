@@ -32,12 +32,7 @@ resource "azurerm_windows_function_app" "new" {
 
   tags = var.tags
 
-  # identity {
-  #   type = "SystemAssigned"
-  # }
-
   identity {
-    type         = "UserAssigned"
-    identity_ids = [var.identity_id]
+    type = "SystemAssigned"
   }
 }

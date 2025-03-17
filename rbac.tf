@@ -16,3 +16,10 @@ for_each = var.functions
   secret_permissions = ["Get", "List"]
   key_permissions    = ["Get", "List"]
 }
+
+resource "azurerm_role_assignment" "key_vault_reader" {
+  for_each             = var.functions
+  scope                = var.key_vault_id
+  role_definition_name = "Key Vault Reader"
+  principal_id         = azurerm_windows_function_app.new[each.key].identity[0].principal_id
+}
